@@ -1,0 +1,27 @@
+.container {
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
+.background {
+	position: absolute;
+}
+
+.titleСontainer {
+	margin-top: 170px;
+	display: flex;
+}
+
+.titleGradient {
+	margin-right: 78px;
+	padding-top: 7px;
+}
+
+.titleContent {
+	font-family: var(--font-family);
+	font-weight: 700;
+	font-size: 56px;
+	line-height: 120%;
+	color: #42567a;
+	width: 353px;
+}
