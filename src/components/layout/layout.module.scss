@@ -1,14 +1,21 @@
-.container {
+.wrapper {
 	max-width: 1440px;
 	margin: 0 auto;
+	position: relative;
+}
+
+.container {
+	position: relative;
 }
 
 .background {
 	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .titleСontainer {
-	margin-top: 170px;
+	padding-top: 170px;
 	display: flex;
 }
 

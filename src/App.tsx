@@ -1,12 +1,13 @@
 // import styles from './App.module.scss';
-import { Layout } from './components/layuot/layout';
-// import Sliders from './components/swiper';
+import { Layout } from './components/layout/layout';
+import Sliders from './components/swiper/swiper';
 
 function App() {
   return (
     <>
-      {/* <Sliders /> */}
-      <Layout />
+      <Layout>
+        <Sliders />
+      </Layout>
     </>
   );
 }

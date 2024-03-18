@@ -1,0 +1,10 @@
+.nav_navigation {
+  display: flex;
+  gap: 20px;
+}
+.swiperButtonPrev,
+.swiperButtonNext {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
