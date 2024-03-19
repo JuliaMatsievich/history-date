@@ -14,7 +14,7 @@ export const NavButtons: FC<INavButtonsProps> = ({
   setIsLastSlide,
 }) => {
   const swiper = useSwiper();
-  console.log('isLastSlide', isLastSlide);
+
   return (
     <>
       <div className={styles.nav_navigation}>

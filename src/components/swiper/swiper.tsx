@@ -16,6 +16,21 @@ import styles from './swiper.module.scss';
 const Sliders: FC = () => {
   const [isLastSlide, setIsLastSlide] = useState<string>('begin');
 
+  // const pagination = {
+  //   // clickable: true,
+  //   // renderBullet(index: number, className: string) {
+  //   //   return `<span class="${className}">0${index + 1}</span>`;
+  //   // },
+  //   renderFraction(currentClass: string, totalClass: string) {
+  //     return (
+  //       `<span class="${currentClass}"></span>` +
+  //       ` of ` +
+  //       `<span class="${totalClass}"></span>`
+  //     );
+  //   },
+  //   type: 'fraction',
+  // };
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -25,10 +40,13 @@ const Sliders: FC = () => {
           onReachBeginning={() => setIsLastSlide('begin')}
           onReachEnd={() => setIsLastSlide('end')}
           pagination={{
+            el: `.swiper_pagination`,
             clickable: true,
-            type: 'bullets',
+            type: 'fraction',
+            formatFractionCurrent: (number) => `0${number}`,
+            formatFractionTotal: (number) => `0${number}`,
           }}
-          modules={[Navigation, Pagination]}
+          modules={[Pagination, Navigation]}
         >
           {slidesContent.map((slide) => {
             return (
@@ -41,7 +59,7 @@ const Sliders: FC = () => {
           })}
           <div className={styles.navButtons_wrapper}>
             <div className={styles.navButtons}>
-              <div className={styles.nav_pagination}>01/04</div>
+              <div className={`${styles.nav_pagination} swiper_pagination`} />
               <NavButtons
                 isLastSlide={isLastSlide}
                 setIsLastSlide={setIsLastSlide}
