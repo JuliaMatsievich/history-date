@@ -1,6 +1,6 @@
 // import styles from './App.module.scss';
 import { Layout } from './components/layout/layout';
-import Sliders from './components/swiper/swiper';
+import Sliders from './components/sliders/sliders';
 
 function App() {
   return (

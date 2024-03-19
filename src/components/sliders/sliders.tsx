@@ -11,7 +11,7 @@ import { slidesContent } from '../../utils/data';
 import { Slide } from '../slider/slide';
 import { NavButtons } from '../buttons/buttons';
 
-import styles from './swiper.module.scss';
+import styles from './sliders.module.scss';
 
 const Sliders: FC = () => {
   const [isLastSlide, setIsLastSlide] = useState<string>('begin');
