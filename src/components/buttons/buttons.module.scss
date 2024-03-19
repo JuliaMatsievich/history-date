@@ -7,4 +7,15 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+
+  & svg:hover {
+    fill: rgb(240, 239, 239);
+  }
+}
+
+.swiperButtonPrev_disabled,
+.swiperButtonNext_disabled {
+  opacity: 0.5;
+  border: none;
+  background-color: transparent;
 }
