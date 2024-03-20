@@ -1,6 +1,11 @@
 export interface ISlideContent {
   title: string;
-  year: string[];
-  events: string[];
-	id: number
+  facts: IFacts[];
+  id: number;
+}
+
+export interface IFacts {
+  id: number;
+  year: string;
+  fact: string;
 }

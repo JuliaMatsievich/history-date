@@ -1,15 +1,17 @@
 import { FC, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 
 import 'swiper/scss/pagination';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, History, Controller } from 'swiper/modules';
 
 import { slidesContent } from '../../utils/data';
 
-import { Slide } from '../slider/slide';
-import { NavButtons } from '../buttons/buttons';
+import { NavButtons } from '../buttons/navButtons/buttons';
+
+import { Slide } from './slider/slide';
 
 import styles from './sliders.module.scss';
 
@@ -37,26 +39,30 @@ const Sliders: FC = () => {
         <Swiper
           spaceBetween={50}
           slidesPerView={1}
+          allowTouchMove={false}
           onReachBeginning={() => setIsLastSlide('begin')}
           onReachEnd={() => setIsLastSlide('end')}
+          history={{
+            key: 'slide',
+          }}
           pagination={{
             el: `.swiper_pagination`,
             clickable: true,
             type: 'fraction',
-            formatFractionCurrent: (number) => `0${number}`,
-            formatFractionTotal: (number) => `0${number}`,
+            formatFractionCurrent: (number: number) => `0${number}`,
+            formatFractionTotal: (number: number) => `0${number}`,
           }}
-          modules={[Pagination, Navigation]}
+          modules={[Pagination, Navigation, History, Controller]}
         >
-          {slidesContent.map((slide) => {
-            return (
-              <>
-                <SwiperSlide key={slide.id}>
-                  <Slide year={slide.year} />
-                </SwiperSlide>
-              </>
-            );
-          })}
+          {slidesContent.map((slide, index) => (
+            <SwiperSlide
+              key={slide.id}
+              data-history={`${slide.id}`}
+              virtualIndex={index}
+            >
+              <Slide facts={slide.facts} />
+            </SwiperSlide>
+          ))}
           <div className={styles.navButtons_wrapper}>
             <div className={styles.navButtons}>
               <div className={`${styles.nav_pagination} swiper_pagination`} />
