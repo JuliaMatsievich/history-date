@@ -1,0 +1,36 @@
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	// margin-top: -45px;
+	align-items: center;
+	// position: absolute;
+}
+
+.prevButton,
+.nextButton {
+	position: absolute;
+	border-radius: 100%;
+	background-color: white;
+	width: 40px;
+	height: 40px;
+	border: none;
+	top: 25px;
+	z-index: 10;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgb(219, 217, 217);
+		box-shadow: 0 0 15px 0 rgba(56, 119, 238, 0.1);
+	}
+}
+.prevButton {
+	left: 0;
+}
+.nextButton {
+	right: 0;
+}
+
+.prevButton_disabled,
+.nextButton_disabled {
+	display: none;
+}
