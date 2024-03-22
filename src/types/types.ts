@@ -9,3 +9,8 @@ export interface IFacts {
   year: string;
   fact: string;
 }
+
+export interface IPoints {
+  x: number;
+  y: number;
+}

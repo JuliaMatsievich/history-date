@@ -13,11 +13,6 @@ export const ButtonsFacts: FC<INavButtonsProps> = ({
   setIsLastSlide,
 }) => {
   const swiper = useSwiper();
-  console.log('swiper.isBeginning', swiper.isBeginning);
-  console.log(' swiper.isEnd ', swiper.isEnd);
-  console.log('swiper', swiper);
-
-  // const [isLastSlide, setisLastSlide] = useState<boolean>(false);
 
   return (
     <>
@@ -27,6 +22,7 @@ export const ButtonsFacts: FC<INavButtonsProps> = ({
           onClick={() => {
             setIsLastSlide('prev');
             swiper.slidePrev();
+            swiper.init();
           }}
           aria-label="prev"
           className={

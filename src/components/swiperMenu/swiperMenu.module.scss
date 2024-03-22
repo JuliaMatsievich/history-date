@@ -1,0 +1,37 @@
+.wrapper {
+	width: 530px;
+	height: 530px;
+	border-radius: 50%;
+	background-color: transparent;
+	border: 1px solid grey;
+	// transform: rotate(45deg)
+}
+.item,
+.item_active {
+	position: absolute;
+	cursor: pointer;
+	z-index: 12;
+	border-radius: 100%;
+
+}
+
+.item {
+	width: 6px;
+	height: 6px;
+	color: #42567a;
+	background-color: #42567a;
+}
+
+.item_active {
+	width: 56px;
+	height: 56px;
+	background-color: #E5E5E5;
+	border: 1px solid rgba(48, 62, 88, 0.5);
+	text-align: center;
+	line-height: 50px;
+	font-size: 20px;
+	opacity: 1;
+	text-align: center;
+}
+
+

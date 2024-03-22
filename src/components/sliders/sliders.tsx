@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 
@@ -11,27 +10,14 @@ import { slidesContent } from '../../utils/data';
 
 import { NavButtons } from '../buttons/navButtons/buttons';
 
+import { SwiperMenu } from '../swiperMenu/swiperMenu';
+
 import { Slide } from './slider/slide';
 
 import styles from './sliders.module.scss';
 
 const Sliders: FC = () => {
   const [isLastSlide, setIsLastSlide] = useState<string>('begin');
-
-  // const pagination = {
-  //   // clickable: true,
-  //   // renderBullet(index: number, className: string) {
-  //   //   return `<span class="${className}">0${index + 1}</span>`;
-  //   // },
-  //   renderFraction(currentClass: string, totalClass: string) {
-  //     return (
-  //       `<span class="${currentClass}"></span>` +
-  //       ` of ` +
-  //       `<span class="${totalClass}"></span>`
-  //     );
-  //   },
-  //   type: 'fraction',
-  // };
 
   return (
     <>
@@ -54,6 +40,9 @@ const Sliders: FC = () => {
           }}
           modules={[Pagination, Navigation, History, Controller]}
         >
+          <div className={`${styles.swiperMenu}`}>
+            <SwiperMenu totalSlides={slidesContent.length} />
+          </div>
           {slidesContent.map((slide, index) => (
             <SwiperSlide
               key={slide.id}
