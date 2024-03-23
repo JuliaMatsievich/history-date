@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import { useSwiper } from 'swiper/react';
 
@@ -20,6 +20,7 @@ export const SwiperMenu: FC<ISwiperMenuProps> = ({ activeSlide }) => {
   const radiusPointActive = 28;
   const swiper = useSwiper();
   const points: IPoints[] = getCoordPoints(radius, slidesContent.length);
+  const [isHover, setIsHover] = useState<number>(0);
 
   return (
     <>
@@ -29,20 +30,28 @@ export const SwiperMenu: FC<ISwiperMenuProps> = ({ activeSlide }) => {
             onClick={() => {
               swiper.slideTo(index);
             }}
+            onMouseEnter={() => {
+              setIsHover(index);
+            }}
+            onMouseLeave={() => {
+              setIsHover(0);
+            }}
             key={index}
             className={activeSlide === index ? styles.item_active : styles.item}
             style={{
               top:
-                activeSlide === index
+                activeSlide === index || isHover === index
                   ? points[index].y - radiusPointActive
                   : points[index].y - radiusPoint,
               left:
-                activeSlide === index
+                activeSlide === index || isHover === index
                   ? points[index].x - radiusPointActive
                   : points[index].x - radiusPoint,
             }}
           >
-            {activeSlide === index ? <p>{index + 1}</p> : null}
+            {activeSlide === index || isHover === index ? (
+              <p>{index + 1}</p>
+            ) : null}
           </div>
         ))}
       </div>

@@ -4,13 +4,13 @@
 	border-radius: 50%;
 	background-color: transparent;
 	border: 1px solid grey;
-	// transform: rotate(45deg)
+	// transform: rotate(45deg);
 }
 .item,
 .item_active {
 	position: absolute;
-	cursor: pointer;
-	z-index: 12;
+	cursor: pointer !important;
+	z-index: 20;
 	border-radius: 100%;
 }
 
