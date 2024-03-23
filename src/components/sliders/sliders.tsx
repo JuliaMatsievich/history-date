@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper';
 
 import 'swiper/css';
 
@@ -18,6 +19,7 @@ import styles from './sliders.module.scss';
 
 const Sliders: FC = () => {
   const [isLastSlide, setIsLastSlide] = useState<string>('begin');
+  const [activeSlide, setActiveSlide] = useState<number>(0);
 
   return (
     <>
@@ -28,6 +30,9 @@ const Sliders: FC = () => {
           allowTouchMove={false}
           onReachBeginning={() => setIsLastSlide('begin')}
           onReachEnd={() => setIsLastSlide('end')}
+          onSlideChange={(swiper: SwiperType) =>
+            setActiveSlide(swiper.activeIndex)
+          }
           history={{
             key: 'slide',
           }}
@@ -41,7 +46,7 @@ const Sliders: FC = () => {
           modules={[Pagination, Navigation, History, Controller]}
         >
           <div className={`${styles.swiperMenu}`}>
-            <SwiperMenu totalSlides={slidesContent.length} />
+            <SwiperMenu activeSlide={activeSlide} />
           </div>
           {slidesContent.map((slide, index) => (
             <SwiperSlide

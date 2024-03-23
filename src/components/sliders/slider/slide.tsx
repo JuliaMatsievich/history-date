@@ -5,6 +5,7 @@ import { IFacts } from '../../../types/types';
 import { SlidersFacts } from '../slidersFacts/slidersFacts';
 
 import styles from './slide.module.scss';
+// import { SwiperMenu } from '../../swiperMenu/swiperMenu';
 
 interface ISlideProps {
   facts: IFacts[];
@@ -17,7 +18,7 @@ export const Slide: FC<ISlideProps> = ({ facts }) => {
         <div className={styles.firstYear}>{facts[0].year}</div>
         <div className={styles.secondYear}>{facts[facts.length - 1].year}</div>
       </div>
-
+      {/* <SwiperMenu /> */}
       <SlidersFacts facts={facts} />
     </>
   );
