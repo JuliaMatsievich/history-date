@@ -1,10 +1,20 @@
+.wrapperwrapper {
+	// width: 600px;
+	// height: 600px;
+	// border: 1px solid grey;
+	// position: relative;
+}
+
 .wrapper {
+	// position: absolute;
 	width: 530px;
 	height: 530px;
 	border-radius: 50%;
 	background-color: transparent;
 	border: 1px solid grey;
-	// transform: rotate(45deg);
+	// top: 25px;
+	// left: 25px;
+  // left: calc(50% - 265px);
 }
 .item,
 .item_active {
@@ -19,6 +29,7 @@
 	height: 6px;
 	color: #42567a;
 	background-color: #42567a;
+	transition: all 0.3s ease-in-out;
 
 	&:hover {
 		width: 56px;

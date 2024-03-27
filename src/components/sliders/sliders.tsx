@@ -1,7 +1,8 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
-
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import 'swiper/css';
 
 import 'swiper/scss/pagination';
@@ -17,9 +18,20 @@ import { Slide } from './slider/slide';
 
 import styles from './sliders.module.scss';
 
+gsap.registerPlugin(useGSAP);
+
 const Sliders: FC = () => {
   const [isLastSlide, setIsLastSlide] = useState<string>('begin');
   const [activeSlide, setActiveSlide] = useState<number>(0);
+  const container = useRef(null);
+
+  // useGSAP(
+  //   () => {
+  //     // gsap code here...
+  //     gsap.to(container.current, { rotation: 360 }); // <-- automatically reverted
+  //   },
+  //   { scope: container }
+  // ); // <-- scope for selector text (optional)
 
   return (
     <>
@@ -45,7 +57,7 @@ const Sliders: FC = () => {
           }}
           modules={[Pagination, Navigation, History, Controller]}
         >
-          <div className={`${styles.swiperMenu}`}>
+          <div className={`${styles.swiperMenu}`} ref={container}>
             <SwiperMenu activeSlide={activeSlide} />
           </div>
           {slidesContent.map((slide, index) => (
