@@ -1,75 +1,31 @@
-import { FC, useRef, useState } from 'react';
+import { FC, LegacyRef, useState } from 'react';
 
 import { useSwiper } from 'swiper/react';
-
-// import * as PIXI from 'pixi.js';
-
-import { getCoordPoints } from '../../utils/helpFunc/getCoordPointsFunc';
-
-import { IPoints } from '../../types/types';
 
 import { slidesContent } from '../../utils/data';
 
 import styles from './swiperMenu.module.scss';
-
-// import { PixiPlugin } from 'gsap/PixiPlugin';
-import gsap from 'gsap';
-// import { useGSAP } from '@gsap/react';
-
-// gsap.registerPlugin(PixiPlugin);
-// PixiPlugin.registerPIXI(PIXI);
+import { IPoints } from '../../types/types';
 
 interface ISwiperMenuProps {
   activeSlide: number;
+  menu: LegacyRef<HTMLDivElement>;
+  radiusPoint: number;
+  radiusPointActive: number;
+  points: IPoints[];
+  rotate: (slidesNumber: number, slideIndex: number) => void;
 }
 
-export const SwiperMenu: FC<ISwiperMenuProps> = ({ activeSlide }) => {
-  const radius = 265;
-  const radiusPoint = 3;
-  const radiusPointActive = 28;
+export const SwiperMenu: FC<ISwiperMenuProps> = ({
+  activeSlide,
+  menu,
+  radiusPoint,
+  radiusPointActive,
+  points,
+  rotate,
+}) => {
   const swiper = useSwiper();
-  const points: IPoints[] = getCoordPoints(radius, slidesContent.length);
   const [isHover, setIsHover] = useState<number>();
-  // const circle = useRef<HTMLDivElement>(null);
-  const menu = useRef<HTMLDivElement>(null);
-  // const tl = useRef<GSAPTimeline>();
-  const item = useRef<HTMLDivElement>(null);
-  // const [prevSlide, setPrevSlide] = useState<number>(activeSlide);
-  // const [state, setState] = useState<number>(activeSlide);
-
-  // useGSAP(
-  //   () => {
-  //     gsap.to(menu.current, { rotaiton: 360 });
-  //   },
-  //   { dependencies: [activeSlide], revertOnUpdate: true, scope: menu }
-  // );
-
-  // const onEnter = () => {
-  // tl.current = gsap
-  //   .timeline()
-  //   .to(menu.current, { rotation: 360 })
-  //   .to(item.current, {
-  //     duration: 3,
-  //     ease: 'power2.inOut',
-  //     rotation: 360,
-  //     repeat: -1,
-  //     transformOrigin: 'center center',
-  //   });
-  // gsap.to(item.current, {
-  //   duration: 3,
-  //   ease: 'power2.inOut',
-  //   rotation: 360,
-  //   repeat: -1,
-  //   transformOrigin: 'center center',
-  // });
-  // gsap.to(menu.current, { rotation: 360 });
-  // };
-
-  const rotate = (slideNumber: number, slidesNumber: number) => {
-    const angle = slideNumber * ((2 * Math.PI) / slidesNumber);
-    console.log('angle', angle);
-    gsap.fromTo(menu.current, { rotation: -45 }, { rotation: angle + 60 });
-  };
 
   return (
     <>
@@ -77,10 +33,12 @@ export const SwiperMenu: FC<ISwiperMenuProps> = ({ activeSlide }) => {
         <div className={styles.wrapper}>
           {slidesContent.map((slide, index) => (
             <div
-              ref={item}
               onClick={() => {
+                if (activeSlide === index) {
+                  return;
+                }
                 swiper.slideTo(index);
-                rotate(index, slidesContent.length);
+                rotate(slidesContent.length, swiper.activeIndex);
               }}
               onMouseEnter={() => {
                 setIsHover(index);
@@ -93,6 +51,7 @@ export const SwiperMenu: FC<ISwiperMenuProps> = ({ activeSlide }) => {
                 activeSlide === index ? styles.item_active : styles.item
               }
               style={{
+                transform: `rotate(${(swiper.activeIndex * 360) / slidesContent.length}deg)`,
                 top:
                   activeSlide === index || isHover === index
                     ? points[index].y - radiusPointActive

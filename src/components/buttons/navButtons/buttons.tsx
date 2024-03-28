@@ -2,16 +2,20 @@ import { FC } from 'react';
 
 import { useSwiper } from 'swiper/react';
 
+import { slidesContent } from '../../../utils/data';
+
 import styles from './buttons.module.scss';
 
 interface INavButtonsProps {
   isLastSlide: string;
   setIsLastSlide: React.Dispatch<React.SetStateAction<string>>;
+  rotate: (slidesNumber: number, slideIndex: number) => void;
 }
 
 export const NavButtons: FC<INavButtonsProps> = ({
   isLastSlide,
   setIsLastSlide,
+  rotate,
 }) => {
   const swiper = useSwiper();
 
@@ -23,6 +27,7 @@ export const NavButtons: FC<INavButtonsProps> = ({
           onClick={() => {
             setIsLastSlide('prev');
             swiper.slidePrev();
+            rotate(slidesContent.length, swiper.activeIndex);
           }}
           className={
             isLastSlide === 'begin'
@@ -59,6 +64,7 @@ export const NavButtons: FC<INavButtonsProps> = ({
           onClick={() => {
             setIsLastSlide('next');
             swiper.slideNext();
+            rotate(slidesContent.length, swiper.activeIndex);
           }}
           className={
             isLastSlide === 'end'
